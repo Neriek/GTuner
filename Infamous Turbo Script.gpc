@@ -1,0 +1,102 @@
+/************************************************************* *
+                Infamous Turbo Script, by Neriek
+                    UNIVERSAL CONTROLLER VERSION
+* *********************************************************** */
+define LX = PS3_LX;
+define LY = PS3_LY;
+define RX = PS3_RX;
+define RY = PS3_RY;
+define R1 = PS3_R1;
+define R2 = PS3_R2;
+define L1 = PS3_L1;
+define L2 = PS3_L2;
+define A = PS3_CROSS;
+define X = PS3_SQUARE;
+define B = PS3_CIRCLE;
+define Y = PS3_TRIANGLE;
+define BACK = PS3_SELECT;
+define START = PS3_START;
+define LS = PS3_L3;
+define RS = PS3_R3;
+int Scan_on = FALSE;
+int shoot;
+int aim;
+
+
+main {
+    if  (get_controller() == PIO_XB360) {   swap(R1, R2);   swap(L1, L2);   }
+
+        if (event_press(LS)) {
+        Scan_on = !Scan_on;
+        }
+        if(Scan_on) {
+            combo_run(Scan);
+            } else if(combo_running(Scan)) {
+                combo_stop(Scan); 
+                }
+        if(get_val(L1) >90 && get_val(R1) >90) { 
+            combo_run(Loop);
+            set_led(LED_1, 0);
+            combo_run(LeDFLicKeR2);
+            }
+        else if(combo_running(Loop)) {
+            combo_stop(Loop);
+            combo_stop(LeDFLicKeR2);
+            set_led(LED_1, 1);
+            }
+
+        if(get_val(L2) >90 && get_val(Y)) { 
+            combo_run(Rocket_Spam);
+            } else if(combo_running(Rocket_Spam)) {
+                combo_stop(Rocket_Spam);
+                }
+        if(get_val(X)) { 
+            combo_run(Loop2);
+            combo_run(LeDFLicKeR);
+            }
+        else if(combo_running(Loop2)) {
+            combo_stop(Loop2);
+            combo_stop(LeDFLicKeR);
+            set_led(LED_1, 1);
+            }
+
+
+}
+//Combo Start
+    combo Loop  {
+        set_val(R1, 100);
+        wait(30);
+        set_val(R1, 0);
+        wait(30);
+}
+    combo Loop2  {
+        set_val(X, 100);
+        wait(30);
+        set_val(X, 0);
+        wait(30);
+}
+    combo Rocket_Spam  {
+        set_val(Y, 100);
+        wait(30);
+        set_val(Y, 0);
+        wait(30);
+}
+    combo Scan  {
+        set_val(LS, 100);
+        wait(30);
+        set_val(LS, 0);
+        wait(30);
+}
+
+    combo LeDFLicKeR    {
+        set_led(LED_1, 1);
+        wait(30);
+        set_led(LED_1, 0);
+        wait(30);
+}
+    combo LeDFLicKeR2    {
+        set_led(LED_2, 1);
+        wait(30);
+        set_led(LED_2, 0);
+        wait(30);
+}
