@@ -1,0 +1,99 @@
+/*************************************************************\
+*                 Kingdom Hearts 2 Final Mix                  *
+\*************************************************************/
+
+define LX = PS3_LX;
+define LY = PS3_LY;
+define RX = PS3_RX;
+define RY = PS3_RY;
+define R1 = PS3_R1;
+define R2 = PS3_R2;
+define L1 = PS3_L1;
+define L2 = PS3_L2;
+define A = PS3_CROSS;
+define X = PS3_SQUARE;
+define B = PS3_CIRCLE;
+define Y = PS3_TRIANGLE;
+define BACK = PS3_SELECT;
+define START = PS3_START;
+define L3 = PS3_L3;
+define R3 = PS3_R3;
+define DeadZoneLeftStick = 27; // Deadzone modifiers
+define DeadZoneRightStick = 37;
+int dpl, dpr, dpu, dpd;
+// dpl = quick heal & quick item
+
+main {
+
+    if  (get_controller() == PIO_XB360 && get_console() == PIO_PS3) {   swap(R1, R2);   swap(L1, L2);   }
+    if  (get_controller() == PIO_PS3 && get_console() == PIO_XB360) {   swap(R1, R2);   swap(L1, L2);   }
+
+    if(get_val(10) <= DeadZoneRightStick && get_val(10) >= DeadZoneRightStick*-1) set_val(10,0);
+    if(get_val( 9) <= DeadZoneRightStick && get_val( 9) >= DeadZoneRightStick*-1) set_val( 9,0);
+    if(get_val(12) <= DeadZoneLeftStick && get_val(12)  >= DeadZoneLeftStick*-1)  set_val(12,0);
+    if(get_val(11) <= DeadZoneLeftStick && get_val(11)  >= DeadZoneLeftStick*-1)  set_val(11,0);
+
+        if(get_val(LX) >60) set_val(LX, 100);
+        if(get_val(LY) >60) set_val(LY, 100);
+        if(get_val(LX) <-60) set_val(LX, -100);
+        if(get_val(LY) <-60) set_val(LY, -100);
+
+    if(get_val(1)){
+        if(event_press(13)){                     //13=D-Pad Up
+            dpu=!dpu;                           //Toggle dpu true/false state
+        }
+        if(event_press(14)){                     //14=D-Pad Down
+            dpd=!dpd;                           //Toggle dpd true/false state
+        }
+        if(event_press(15)){                     //15=D-Pad Left
+            dpl=!dpl;                           //Toggle dpl true/false state
+        }
+        if(event_press(16)){                     //16=D-Pad Right
+            dpr=!dpr;                           //Toggle dpr true/false state
+        }
+   
+        set_val(13,0);                          //Prevent D-Pad 
+        set_val(14,0);                          //Signals from being
+        set_val(15,0);                          //Sent to Console
+        set_val(16,0);                          
+    
+    }
+
+    if(dpu){                                //If dpu is true    
+        //Do Something
+    }
+        
+    if(dpd){                                //If dpd is true    
+        //Do Something
+    }
+        
+    if(dpl){                                //If dpl is true    
+        if(event_press(L2)){
+            combo_run(quick1);
+        }
+        if(event_press(R2)){
+            combo_run(quick2);
+        }
+    }
+        
+    if(dpr){                                //If dpr is true    
+        //Do Something
+    }
+
+}
+
+combo quick1{
+set_val(L1, 100);
+set_val(Y, 100);
+wait(80);
+set_val(L1, 0);
+set_val(Y, 0);
+}
+
+combo quick2{
+set_val(L1, 100);
+set_val(B, 100);
+wait(80);
+set_val(L1, 0);
+set_val(B, 0);
+}

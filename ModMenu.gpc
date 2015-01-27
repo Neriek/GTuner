@@ -1,0 +1,56 @@
+/*
+Credits to KittyDawn for help with the ModMenu
+
+
+*/
+int dpl, dpr, dpu, dpd;
+
+main{
+
+    if(get_val(1)){
+        if(event_press(13)){                     //13=D-Pad Up
+            dpu=!dpu;                           //Toggle dpu true/false state
+        }
+        if(event_press(14)){                     //14=D-Pad Down
+            dpd=!dpd;                           //Toggle dpd true/false state
+        }
+        if(event_press(15)){                     //15=D-Pad Left
+            dpl=!dpl;                           //Toggle dpl true/false state
+        }
+        if(event_press(16)){                     //16=D-Pad Right
+            dpr=!dpr;                           //Toggle dpr true/false state
+        }
+   
+        set_val(13,0);                          //Prevent D-Pad 
+        set_val(14,0);                          //Signals from being
+        set_val(15,0);                          //Sent to Console
+        set_val(16,0);                          
+    
+    }
+
+    if(dpu){                                //If dpu is true    
+        //Do Something
+    }
+        
+    if(dpd){                                //If dpd is true    
+        //Do Something
+    }
+        
+    if(dpl){                                //If dpl is true    
+        if(get_val(7) && get_val(4)){
+            combo_run(Rapid_Fire); 
+        }
+    }
+        
+    if(dpr){                                //If dpr is true    
+        //Do Something
+    }
+    
+}
+
+combo Rapid_Fire{
+    set_val(4,100);
+    wait(40);
+    set_val(4,0);
+    wait(30);
+}  

@@ -1,0 +1,32 @@
+/*************************************************************\
+*                                                             *
+\*************************************************************/
+
+define LX = PS3_LX;
+define LY = PS3_LY;
+define RX = PS3_RX;
+define RY = PS3_RY;
+define R1 = PS3_R1;
+define R2 = PS3_R2;
+define L1 = PS3_L1;
+define L2 = PS3_L2;
+define A = PS3_CROSS;
+define X = PS3_SQUARE;
+define B = PS3_CIRCLE;
+define Y = PS3_TRIANGLE;
+define BACK = PS3_SELECT;
+define START = PS3_START;
+define L3 = PS3_L3;
+define R3 = PS3_R3;
+
+main {
+    //Controller|Console Detection
+    if  (get_controller() == PIO_XB360 && get_console() == PIO_PS3) {   swap(R1, R2);   swap(L1, L2);   }
+    if  (get_controller() == PIO_PS3 && get_console() == PIO_XB360) {   swap(R1, R2);   swap(L1, L2);   }
+
+
+    //Testing input for my controller
+    if (event_press(L2)) {   set_led(LED_1, 0); set_led(LED_2, 1);  } else {   reset_leds();  }
+
+
+}

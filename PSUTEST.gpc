@@ -1,0 +1,20 @@
+// 
+//Phantasy Star Universe on PS3 with Xbox 360/One Controller
+//
+//
+remap XB360_RT -> PS3_R1;
+remap XB360_RB -> PS3_R2;
+remap XB360_LT -> PS3_L1;
+remap XB360_LB -> PS3_L2;
+
+main {
+
+if(get_val(XB1_B))
+{
+swap(PS3_R2, PS3_R1);
+swap(PS3_L2, PS3_L1);
+}
+
+}
+
+
